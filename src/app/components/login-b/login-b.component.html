@@ -1,0 +1,37 @@
+<mat-card class="background">
+    <!--Header Content-->
+    <mat-card-header>
+        <div mat-card-avatar class="mph-logo" layout="row">
+            <div mat-card-avatar class="eye-sym" layout="row"></div>
+        </div>
+        <div layout="row">
+            <mat-card-title class="oncall">ONCALL</mat-card-title>
+            <mat-card-title class="track">Tracker</mat-card-title>
+        </div>
+    </mat-card-header>
+    <!--Form Content-->
+    <mat-card-content>
+        <div class="form1" fxFlex="25">
+            <form class="book" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label style="color: rgb(176, 243, 248);">Email-ID</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="loginForm.controls['email'].errors?.required">This field is mandatory</mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].errors?.email">Invalid email</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label style="color: rgb(176, 243, 248);">Password</mat-label>
+                    <input matInput class="pw" formControlName="password" required>
+                    <mat-error *ngIf="loginForm.controls['password'].errors?.required">This field is mandatory</mat-error>
+                    <mat-error *ngIf="loginForm.controls['password'].errors?.minlength">Input atleast 6 characters</mat-error>
+                    <mat-error *ngIf="loginForm.controls['password'].errors?.hasNumber">Input atleast 1 number</mat-error>
+                </mat-form-field>
+                <mat-card-actions layout="row">
+                    <button mat-raised-button type="submit" class="Update-btn">Log On</button>
+                    <div class="reset" flex="">Forgot Password?<button mat-button class="lable" disableRipple=true (click)="reset()">Click Here</button></div>
+                    <div class="reset" flex="">First-Time User? <button mat-button class="lable" disableRipple=true (click)="signUp()">Click Here</button></div>
+                </mat-card-actions>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

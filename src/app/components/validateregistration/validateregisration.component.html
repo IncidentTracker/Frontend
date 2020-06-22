@@ -1,0 +1,38 @@
+<mat-card class="background">
+    <mat-card-header>
+        <div mat-card-avatar class="mph-logo" layout="row">
+            <div mat-card-avatar class="eye-sym" layout="row"></div>
+        </div>
+        <div layout="row">
+            <mat-card-title class="oncall">ONCALL</mat-card-title>
+            <mat-card-title class="track">Tracker</mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="form1" fxFlex="25">
+            <form class="book" [formGroup]="TokenForm" (ngSubmit)="onSubmit()">
+                <h2 style="color: rgb(176, 243, 248);
+                font-size: 15px;
+                font-style:  italic ;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                    Verify the Token
+                </h2>
+                <mat-form-field appearance="outline">
+                    <mat-label style="color: rgb(176, 243, 248);">Email-ID</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="TokenForm.controls['email'].errors?.required">This field is mandatory</mat-error>
+                    <mat-error *ngIf="TokenForm.controls['email'].errors?.email">Invalid email</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label style="color: rgb(176, 243, 248);">Token</mat-label>
+                    <input matInput formControlName="token" required>
+                    <mat-error *ngIf="TokenForm.controls['token'].errors?.required">This field is mandatory</mat-error>
+                </mat-form-field>
+                <mat-card-actions layout="row">
+                    <button mat-raised-button type="submit" class="Update-btn">Verify</button>
+                    <button mat-raised-button type="button" class="Delete-btn" (click)="backToLogin()">Back</button>
+                </mat-card-actions>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

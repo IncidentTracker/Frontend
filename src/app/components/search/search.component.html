@@ -1,0 +1,31 @@
+<mat-toolbar style="color: transparent;">
+    <span class="spacer"></span>
+    <mat-card-title class="text">Welcome {{Username}}!</mat-card-title>
+    <span class="spacer2"></span>
+    <button mat-raised-button (click)="logout()" value="logout">Logout</button> &nbsp;&nbsp;
+</mat-toolbar>
+
+<div fxLayout="row" fxLayoutAlign="center center" class="example">
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex=100%>
+        <img src="../../assets/Group 14.png" class="eyeImage">
+        <div>
+            <p class="p1">onCallTracker</p>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <mat-card class="search">
+                <mat-form-field style="width: 100%;">
+                    <input matInput type="text" placeholder="Search Keyword., Incident No.,etc" (keydown.enter)="onEnter()" autocomplete="off" [(ngModel)]="TextSearch">
+                </mat-form-field>
+                <mat-icon matSuffix class="mic">mic</mat-icon>
+            </mat-card>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <p>Hit</p> &nbsp;&nbsp;
+            <button mat-raised-button (click)="onEnter()" value="Search">Enter</button> &nbsp;&nbsp;
+            <p>to SEARCH</p>
+        </div>
+    </div>
+</div>
+<!-- This area will appear after serach result-->

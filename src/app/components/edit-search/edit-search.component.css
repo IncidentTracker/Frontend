@@ -1,0 +1,89 @@
+.form_main {
+    width: 100%;
+}
+
+.form_main h4 {
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}
+
+.form {
+    border-radius: 7px;
+    padding: 6px;
+}
+
+
+/** new design */
+
+.formfield {
+    min-width: 300px;
+    max-width: 1000px;
+    width: 300%;
+}
+
+.formtext {
+    width: 100%;
+    left: 50px;
+}
+
+.primary {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+
+.container {
+    margin: 15px;
+    height: fit-content;
+}
+
+.btn-sec {
+    margin-right: 5rem !important;
+    text-align: right;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 800px) {
+    .btn-sec {
+        margin-right: 1rem !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .btn-sec {
+        margin-right: 1rem !important;
+    }
+}
+
+.Update-btn {
+    margin: 5px;
+}
+
+.Delete-btn {
+    margin: 5px;
+}
+
+.mic {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+}

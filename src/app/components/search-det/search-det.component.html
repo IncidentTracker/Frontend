@@ -1,0 +1,159 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <mat-toolbar class="toolbar">
+        <mat-toolbar-row>
+            <img style="margin-left: 51px; margin-top: 32px;" src="../../assets/Group 40.png" class="eyeImage">&nbsp;
+            <div style="width: 100%; display: flex">
+                <div class="search">
+                    <mat-form-field appearance="none" style="width: 80%; font-size: 18px; align-self: center; flex: none;">
+                        <input matInput [(ngModel)]="TextSearch" [placeholder]="TextSearch" (keydown.enter)="onEnter()" autocomplete="off">
+                    </mat-form-field>
+                    <!-- <mat-icon matSuffix class="mic">mic</mat-icon> -->
+                    <div style="display: flex; margin-left: 10px;"><button type="submit" (click)="onEnter()" class="mic"><img src="../../assets/search-icon-small.svg" alt="search"></button></div>
+                </div>
+            </div>
+            <button mat-raised-button (click)="logout()" value="logout">Logout</button> &nbsp;&nbsp;
+        </mat-toolbar-row>
+        <!-- Second Row-->
+        <mat-toolbar-row>
+            <div style="display: flex; margin-left: 153px; margin-top: 25px;">
+                <button class="mic"><img src="../../assets/search-svgrepo-com.svg"  (click) = "DisplayAll()" alt="search by voice"></button>
+                <span><label style= "padding-left: 12px;" class = "text">All</label></span>
+            </div>
+            <div style="display: flex; padding-left: 79px; margin-top: 25px;">
+                <button type="submit" class="mic"><img src="../../assets/baseline_note_add_black_18dp.png" (click)="addData()" alt="search"></button>
+                <span><label style= "padding-left: 12px;" class = "text">Add</label></span>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<div class="example-card" style="vertical-align: right;">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Filters</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="text">
+                            <img src="../../assets/Group 29.svg" alt="search">&nbsp; Severity
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Sev_1' (ngModelChange)="filterchange1()">Sev 1</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Sev_2' (ngModelChange)="filterchange1()">Sev 2</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Sev_3' (ngModelChange)="filterchange1()">Sev 3</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Sev_4' (ngModelChange)="filterchange1()">Sev 4</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Sev_5' (ngModelChange)="filterchange1()">Sev 5</mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="text">
+                            <img src="../../assets/Group 29.svg" alt="search">&nbsp; Team
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.ETKT' (ngModelChange)="filterchange()">ETKT</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.Genres' (ngModelChange)="filterchange()">GENRES</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]='filter1.ACI' (ngModelChange)="filterchange()">ACI</mat-checkbox>
+                    </section>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="text">
+                            <img src="../../assets/Group 29.svg" alt="search">&nbsp; IA
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <article *ngFor="let data of filterdata2">
+                        <section class="example-section">
+                            <mat-checkbox #checkbox class="example-margin" [checked] [(ngModel)]="data.checked" (ngModelChange)="filterchange2()">{{data.IA}}</mat-checkbox>
+                        </section>
+                    </article>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="text">
+                            <img src="../../assets/Group 29.svg" alt="search">&nbsp; Reported By
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <article *ngFor="let data of filterdata3">
+                        <section class="example-section">
+                            <mat-checkbox #checkbox class="example-margin" [checked] [(ngModel)]="data.checked" (ngModelChange)="filterchange3()">{{data.ReportedBy}}</mat-checkbox>
+                        </section>
+                    </article>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="container" style="vertical-align: left;">
+    <div class="row">
+        <div style="cursor:pointer;white-space: pre;/* height: 19px; */color: #06a8cb;font-size: small;" (click)="BacktoSearch()">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Search
+        </div>
+        <div class="form_main">
+            <h4 class="heading"><strong>Search</strong> Results</h4>
+            <div class="mx-auto">
+                <h3 class="lead"><strong class="text-danger">{{showCount}}</strong> result(s) were found for the search for
+                    <strong class="text-danger">{{TextSearch}}</strong></h3>
+            </div>
+        </div>
+        <article *ngFor="let data of splicedData">
+            <!-- <article> -->
+            <div fxLayout="row" fxLayoutAlign="left">
+                <span class="IRNO">{{data.IR}}</span>
+                <span class="severity">Severity:<span style="color: #41BBBE;">{{data.Severity}}</span></span>
+                <span class="editser" style="display: flex; width: 0px;"><button class="mic" (click) = "editSearch(data)"><img src="../../assets/edit-svgrepo-com.svg" alt="search by voice"></button></span>
+            </div>
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0" hideToggle="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div>
+                                <span class="IssueRep"><span Style="font-style: italic; color: #06a8cb;">Reported Issue: </span>{{data.ProblemReported | uppercase}}</span>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <section class="rootcause">
+                        <span><span Style="font-style: italic; color: #06a8cb;">RootCause: </span>{{data.RootCause}}</span>
+                    </section>
+                    <section class="rootcause">
+                        <span><span Style="font-style: italic; color: #06a8cb;">Solution: </span>{{data.ActionResolutionWorkaround}}</span>
+                    </section>
+                    <section class="rootcause">
+                        <span><span Style="font-style: italic; color: #06a8cb;">Team: </span>{{data.Team | uppercase}}</span>
+                    </section>
+                    <section class="rootcause">
+                        <span><span Style="font-style: italic; color: #06a8cb;">Functional Area: </span>{{data.FunctionalArea}}</span>
+                    </section>
+                    <section class="rootcause">
+                        <span><span Style="font-style: italic; color: #06a8cb;">Modified by </span>{{data.LastModifiedBy}} on {{data.LastModifiedDate}}</span>
+                    </section>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div fxLayout="row" fxLayoutAlign="left">
+                <span class="IA">Developer:<span style="font: Regular 14px/17px Lato;color: #000000;">&nbsp;{{data.IA | uppercase}}</span></span>
+                <span style="top: 17px;padding-left: 250px"><img style="width: 14px; height: 14px;" src="../../assets/calendar_today-24px.svg" alt="search"></span>
+                <span style="padding-left: 2px; font: Regular 14px/17px Lato;color: #000000;opacity: 1; width: 41px; height: 17px; white-space: nowrap;">&nbsp;{{data.Date}}</span>
+                <span class="report">Reported&nbsp;by:<span style="font: Regular 14px/17px Lato;color: #000000;">&nbsp;{{data.ReportedBy | uppercase}}</span></span>
+            </div>
+            <br><br>
+        </article>
+        <mat-paginator (page)="pageChangeEvent($event)" [length]="pageLength" [pageSize]="10">
+        </mat-paginator>
+    </div>
+</div>
+<!-- </mat-toolbar> -->

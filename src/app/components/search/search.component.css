@@ -1,0 +1,122 @@
+.header {
+    align-content: right;
+    top: 24px;
+    left: 1125px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    opacity: 1;
+    position: absolute;
+}
+
+.mat-card-header {
+    border: none;
+    box-sizing: border-box;
+}
+
+.header-image1 {
+    background-image: url('../../../assets/content.png');
+    background-size: cover;
+}
+
+.header-image2 {
+    background-image: url('../../../assets/apps.png');
+    background-size: cover;
+    padding: 0 14px;
+}
+
+.header-image3 {
+    background-image: url('../../../assets/Ellipse-114.png');
+    background-size: cover;
+}
+
+.card-container {
+    /*  not needed styles to reflect it */
+    background: blue;
+    padding: 10px;
+    color: white;
+    width: 500px;
+    /* needed styles below */
+    display: flex;
+    justify-content: space-between;
+}
+
+.example-icon {
+    padding: 0 14px;
+    color: black;
+}
+
+.spacer {
+    flex: 0 0 auto;
+}
+
+.spacer2 {
+    flex: 1 0 auto;
+}
+
+.text {
+    top: 31px;
+    left: 800px;
+    width: 54px;
+    height: 16px;
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    letter-spacing: 0px;
+    color: #06484A;
+    opacity: 1;
+}
+
+.eye-sym {
+    top: 177px;
+    left: 639px;
+    width: 500px;
+    height: 306px;
+    position: relative;
+    align-items: middle;
+    background-image: url('../../../assets/Group 40.png');
+    background: transparent url('../../../assets/Group 40.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.search {
+    width: 38%;
+    height: 14px;
+    background-color: #fafafa;
+    border: 1px solid #6CCACC;
+    border-radius: 40px;
+    opacity: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eyeImage {
+    width: 5%;
+    height: 2%;
+    opacity: 1;
+}
+
+ ::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-input-placeholder:enabled {
+    display: none;
+}
+
+.example {
+    height: 500px;
+}
+
+.p1 {
+    font: Regular 24px/29px Montserrat;
+    letter-spacing: 0;
+    color: #0C060F;
+    opacity: 1;
+}
+
+
+/* ------------------------------------------------- These CSS after the search results---------------------------------------------- */
