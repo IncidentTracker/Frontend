@@ -30,7 +30,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label style="color: rgb(176, 243, 248);">New Password</mat-label>
-                    <input matInput formControlName="password" required>
+                    <input matInput class="pw" formControlName="password" required>
                     <mat-error *ngIf="ResetForm.controls['password'].errors?.required">This field is mandatory</mat-error>
                     <mat-error *ngIf="ResetForm.controls['password'].errors?.minlength">Input atleast 6 characters</mat-error>
                     <mat-error *ngIf="ResetForm.controls['password'].errors?.hasNumber">Input atleast 1 number</mat-error>

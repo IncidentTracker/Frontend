@@ -23,7 +23,7 @@ export class ResetTokenComponent implements OnInit {
     this.ResetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       token: ['', Validators.required],
-      password: ['', [Validators.required, CustomValidators.patternValidator(/\d/, { hasNumber: true }), Validators.minLength(2)]],
+      password: ['', [Validators.required, CustomValidators.patternValidator(/\d/, { hasNumber: true }), Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     });
   }

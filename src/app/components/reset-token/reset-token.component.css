@@ -1,3 +1,7 @@
+.pw {
+    -webkit-text-security: disc;
+}
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
     color: rgb(189, 74, 145);
     border: 0
