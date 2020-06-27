@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { SearchService } from '../../services/search.service';
 import * as _ from 'lodash';
 
@@ -12,19 +12,27 @@ export class SearchDetComponent implements OnInit {
   Username: string;
   TextSearch: string;
   showCount: number = 0;
-  filter1 = { ETKT: true, Genres: true, ACI: true, Sev_1: true, Sev_2: true, Sev_3: true, Sev_4: true, Sev_5: true };
+  filter1 = { ETKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
   onData: any[];
   filterdata: any[];
   filterdata2: any[];
   filterdata3: any[];
+  dispdata1: any[];
+  dispdata2: any[];
+  dispdata3: any[];
+  dispdata4: any[];
+
   splicedData: any;
   pageLength: any;
   pageSize: number = 10;
+  displaydataNew: any;
+  displaydataNew1: any;
+  showLoadingIndicator: boolean;
 
   constructor(private SearchSer: SearchService,
-    public route: ActivatedRoute,
     public router: Router,
     private changeDetectorRef: ChangeDetectorRef) {
+
     if (localStorage.currentUser == undefined) {
       this.router.navigate(['/']);
     }
@@ -33,9 +41,12 @@ export class SearchDetComponent implements OnInit {
       this.TextSearch = this.SearchSer.searchStr;
       this.onEnter();
     }
+
+
   }
 
   ngOnInit(): void {
+    this.showLoadingIndicator = true;
     this.Username = localStorage.currentUser;
     this.onEnter();
   }
@@ -43,6 +54,7 @@ export class SearchDetComponent implements OnInit {
   onEnter() {
     this.SearchSer.SearchDetails(this.TextSearch).subscribe(
       (data: any) => {
+        this.showLoadingIndicator = false;
         this.getData(data);
         this.onData = data;
         this.filterdata = data;
@@ -51,15 +63,12 @@ export class SearchDetComponent implements OnInit {
     );
   }
 
-  pageChangeEvent(event) {
-    const offset = ((event.pageIndex + 1) - 1) * event.pageSize;
-    this.splicedData = this.filterdata.slice(offset, offset + event.pageSize);
-  }
-
   DisplayAll() {
+    this.showLoadingIndicator = true;
     this.TextSearch = " display all records";
     this.SearchSer.searchAll().subscribe(
       (data: any) => {
+        this.showLoadingIndicator = false;
         this.getData(data);
         this.onData = data;
         this.filterdata = data;
@@ -87,10 +96,11 @@ export class SearchDetComponent implements OnInit {
 
   filterchange() {
     this.filterdata = this.onData.filter(x =>
-      (x.Team === "TKT" && this.filter1.ETKT) ||
+      ((x.Team === "TKT" || x.Team === "ETKT") && this.filter1.ETKT) ||
       (x.Team === "RES" && this.filter1.Genres) ||
       (x.Team === "ACI" && this.filter1.ACI));
-    this.filterdata = _.sortBy(this.filterdata, (o: { Team: any; }) => o.Team)
+    this.dispdata2 = this.filterdata;
+    this.setCombinationRecords();
     this.setPageData();
   }
 
@@ -101,7 +111,8 @@ export class SearchDetComponent implements OnInit {
       (x.Severity === 3 && this.filter1.Sev_3) ||
       (x.Severity === 4 && this.filter1.Sev_4) ||
       (x.Severity === 5 && this.filter1.Sev_5));
-    this.filterdata = _.sortBy(this.filterdata, (o: { Severity: any; }) => o.Severity)
+    this.dispdata1 = this.filterdata;
+    this.setCombinationRecords();
     this.setPageData();
   }
 
@@ -115,8 +126,8 @@ export class SearchDetComponent implements OnInit {
     });
     this.filterdata = this.onData.filter(y =>
       (y.checked === true))
-    this.filterdata = _.sortBy(this.filterdata, (o: { IA: any; }) => o.IA)
-
+    this.dispdata3 = this.filterdata;
+    this.setCombinationRecords();
     this.setPageData();
   }
 
@@ -130,8 +141,8 @@ export class SearchDetComponent implements OnInit {
     });
     this.filterdata = this.onData.filter(y =>
       (y.checked === true))
-    this.filterdata = _.sortBy(this.filterdata, (o: { ReportedBy: any; }) => o.ReportedBy)
-
+    this.dispdata4 = this.filterdata;
+    this.setCombinationRecords();
     this.setPageData();
   }
 
@@ -147,6 +158,7 @@ export class SearchDetComponent implements OnInit {
         t.IA === item.IA
       ))
     )
+    this.filterdata2 = _.sortBy(this.filterdata2, (o: { IA: any; }) => o.IA)
 
     this.filterdata3 = [];
     data.forEach(element => {
@@ -158,13 +170,61 @@ export class SearchDetComponent implements OnInit {
         t.ReportedBy === item.ReportedBy
       ))
     )
+    this.filterdata3 = _.sortBy(this.filterdata3, (o: { ReportedBy: any; }) => o.ReportedBy)
+
     this.showCount = data.length;
   }
 
   setPageData() {
     this.showCount = this.filterdata.length;
     this.pageLength = this.filterdata.length;
+    this.filterdata = _.sortBy(this.filterdata, (o: { _id: any; }) => o._id);
+    this.filterdata = this.filterdata.reverse();
     this.splicedData = this.filterdata.slice(0, this.pageSize);
+  }
+
+  pageChangeEvent(event) {
+    const offset = ((event.pageIndex + 1) - 1) * event.pageSize;
+    this.splicedData = this.filterdata.slice(offset, offset + event.pageSize);
+  }
+
+  setCombinationRecords() {
+    this.displaydataNew = [].concat(this.dispdata1, this.dispdata2, this.dispdata3, this.dispdata4);
+
+    this.displaydataNew1 = this.displaydataNew.filter(function (element) {
+      return element !== undefined;
+    });
+
+    this.displaydataNew = this.displaydataNew1.filter((item, index, self) =>
+      index === self.findIndex((t) => (
+        t._id === item._id
+      ))
+    )
+
+    if (this.dispdata1 !== undefined && this.dispdata1.length)
+      this.getCombinationRecords(this.displaydataNew, this.dispdata1);
+
+    if (this.dispdata2 !== undefined && this.dispdata2.length)
+      this.getCombinationRecords(this.displaydataNew, this.dispdata2);
+
+    if (this.dispdata3 !== undefined && this.dispdata3.length)
+      this.getCombinationRecords(this.displaydataNew, this.dispdata3);
+
+    if (this.dispdata4 !== undefined && this.dispdata4.length)
+      this.getCombinationRecords(this.displaydataNew, this.dispdata4);
+
+    this.filterdata = this.displaydataNew;
+  }
+
+  getCombinationRecords(data1: any, data2: any[]) {
+    this.displaydataNew = [];
+    data1.forEach((element1: any) => {
+      data2.forEach((element2: any) => {
+        if (element1 === element2) {
+          this.displaydataNew.push(element1);
+        }
+      });
+    });
   }
 
   logout() {

@@ -12,10 +12,9 @@ export class SearchComponent implements OnInit {
   TextSearch: string;
   ShowSearchResult: Boolean = true;
   Username: string;
-
+  
   constructor(private SearchSer: SearchService,
     private loginSer: AuthServService,
-    public route: ActivatedRoute,
     public router: Router) { }
 
   ngOnInit(): void {
@@ -37,6 +36,10 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  addData() {
+    this.router.navigate(['/Add']);
+  }
+  
   logout() {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/']);

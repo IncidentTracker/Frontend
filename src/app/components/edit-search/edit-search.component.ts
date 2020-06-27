@@ -11,12 +11,12 @@ import { CustomValidators } from 'src/app/services/custom-validators';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     const isSubmitted = form && form.submitted;
+//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+//   }
+// }
 
 @Component({
   selector: 'app-edit-search',
@@ -25,7 +25,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class EditSearchComponent implements OnInit {
-  matcher = new MyErrorStateMatcher();
+  // matcher = new MyErrorStateMatcher();
   AddPage: boolean = true;
   EditForm: FormGroup;
   message: string;
@@ -99,11 +99,7 @@ export class EditSearchComponent implements OnInit {
       LastModifiedDate: new FormControl(),
     });
     this.EditForm.patchValue({ LastModifiedBy: localStorage.currentUserEmail });
-    this.EditForm.patchValue({ LastModifiedDate: this.LastModifiedDate.getDate() });
-  }
-
-  BacktoSearchResult() {
-    this.router.navigate(['/list']);
+    this.EditForm.patchValue({ LastModifiedDate: this.LastModifiedDate});
   }
 
   onSubmit() {
@@ -115,7 +111,7 @@ export class EditSearchComponent implements OnInit {
     if (action === 'Add') {
       if (!this.EditForm.valid) {
         alert("Fill in the mandatory fields");
-        this.Flag = 'X';
+        this.Flag = 'X'; 
       }
       else {
         this.message = "Are you sure want to Add ?";
@@ -132,8 +128,12 @@ export class EditSearchComponent implements OnInit {
         this.Flag = 'D';
       }
       else if (action === 'Reset') {
-        this.message = "Are you sure want to clear ?";
+        this.message = "Are you sure want to reset ?";
         this.Flag = 'R';
+      }
+      else if (action === 'Cancel') {
+        this.message = "Are you sure want to cancel ?";
+        this.Flag = 'C';
       }
     }
 
@@ -160,6 +160,9 @@ export class EditSearchComponent implements OnInit {
           if (this.Flag === 'R') {
             this.Reset();
           }
+          if (this.Flag === 'C') {
+            this.BacktoSearchResult();
+          }
         }
       })
     }
@@ -185,8 +188,7 @@ export class EditSearchComponent implements OnInit {
       .subscribe(data => {
         alert(data.Error);
         this.BacktoSearchResult()
-      });
-    this.router.navigate([this.router.url]);
+      });    
   }
 
 
@@ -201,4 +203,9 @@ export class EditSearchComponent implements OnInit {
   Reset() {
     this.EditForm.reset();
   }
+
+  BacktoSearchResult() {
+    this.router.navigate(['/list']);
+  }
+
 }

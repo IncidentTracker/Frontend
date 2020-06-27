@@ -37,7 +37,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label style="color: rgb(176, 243, 248);">Confirm New Password</mat-label>
-                    <input matInput formControlName="confirmPassword" required>
+                    <input matInput class="pw" formControlName="confirmPassword" required>
                     <mat-error *ngIf="ResetForm.controls['confirmPassword'].errors?.required">This field is mandatory</mat-error>
                     <mat-error *ngIf="ResetForm.controls['confirmPassword'].hasError('NoPassswordMatch')">Password do not match</mat-error>
                 </mat-form-field>

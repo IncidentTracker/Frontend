@@ -98,7 +98,7 @@
                         <button mat-raised-button type="submit" *ngIf="!AddPage" color="primary" class="Update-btn" (click)="openDialog('Update')">Update</button>
                         <button mat-raised-button type="submit" *ngIf="AddPage" color="asent" class="Delete-btn" (click)="openDialog('Reset')">Clear</button>
                         <button mat-raised-button type="submit" *ngIf="supervisor=='banu.meera@dxc.com'" color="warn" class="Delete-btn" (click)="openDialog('Delete')">Delete</button>
-                        <button mat-raised-button type="button" class="Delete-btn" (click)="BacktoSearchResult()">Cancel</button>
+                        <button mat-raised-button type="button" class="Delete-btn" (click)="openDialog('Cancel')">Cancel</button>
                     </div>
                 </form>
             </mat-card>
