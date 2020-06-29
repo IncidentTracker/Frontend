@@ -52,6 +52,7 @@ export class SearchDetComponent implements OnInit {
   }
 
   onEnter() {
+    this.showLoadingIndicator = true;
     this.SearchSer.SearchDetails(this.TextSearch).subscribe(
       (data: any) => {
         this.showLoadingIndicator = false;
@@ -91,6 +92,7 @@ export class SearchDetComponent implements OnInit {
   }
 
   addData() {
+    this.showLoadingIndicator = true;
     this.router.navigate(['/Add']);
   }
 

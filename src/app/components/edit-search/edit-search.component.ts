@@ -83,7 +83,7 @@ export class EditSearchComponent implements OnInit {
   createForm() {
     this.EditForm = this.formBuilder.group({
       LastModifiedBy: new FormControl(),
-      Date: new FormControl(null, [Validators.required, CustomValidators.dateValidator(/[0-9]{2}-[0-9]{2}-[0-9]{2}/, { hasFormat: true })]),
+      Date: new FormControl(null, [Validators.required, CustomValidators.dateValidator(/^[0-9]{2}-[0-9]{2}-[0-9]{2}$/, { hasFormat: true })]),
       IA: new FormControl(null, [Validators.required]),
       IR: new FormControl(null, [Validators.required]),
       Severity: new FormControl(null, [Validators.required]),
