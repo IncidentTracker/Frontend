@@ -49,25 +49,12 @@
     height: 37px;
     position: absolute;
     align-content: left;
-    font: Bold Italic 20pt/24pt Montserrat;
+    font: Bold Italic 100pt/24pt Montserrat;
     letter-spacing: 0;
     text-align: justify;
     /* vertical-align: middle; */
     color: #FFFFFF;
     opacity: 100;
-}
-
-.track {
-    top: 87px;
-    left: 675px;
-    width: 109px;
-    height: 37px;
-    position: absolute;
-    text-align: justify;
-    font: Lighter Italic 30px/24px Montserrat;
-    letter-spacing: 0;
-    color: #FFFFFF;
-    opacity: 1;
 }
 
  ::ng-deep.mat-card-content:hover {
