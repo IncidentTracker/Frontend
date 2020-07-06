@@ -1,15 +1,14 @@
 <mat-card class="background">
     <mat-card-header>
-        <div mat-card-avatar class="mph-logo" layout="row">
-            <div mat-card-avatar class="eye-sym" layout="row"></div>
-        </div>
-        <div layout="row">
-            <mat-card-title class="oncall">ONCALLTracker</mat-card-title>
+        <div class="row">
+            <div class="mph-logo"><img src="../../../assets/Mphasis_Login.png"></div>
+            <div class="eye-sym"><img src="../../../assets/Group 40.png"></div>
+            <div class="oncall">ONCALLTracker</div>
         </div>
     </mat-card-header>
     <mat-card-content>
-        <div class="form1" fxFlex="25">
-            <form class="book" [formGroup]="PassForm" (ngSubmit)="onSubmit()">
+        <div>
+            <form class="bookF" [formGroup]="PassForm" (ngSubmit)="onSubmit()">
                 <h2 style="color: rgb(176, 243, 248);
                 font-size: 15px;
                 font-style:  italic ;

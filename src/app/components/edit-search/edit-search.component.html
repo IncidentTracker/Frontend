@@ -1,6 +1,6 @@
 <div class="mdc-layout-grid" fxFlex=100%>
     <div style="padding-top: 2%;">
-        <h4 class="heading"><strong>Edit/Update Incident </strong> Details <span></span></h4>
+        <h4 class="heading"><strong>Edit/Update  </strong> Incidents <span></span></h4>
         <div *ngIf="!AddPage" style="cursor:pointer;white-space: pre;/* height: 19px; */color: #06a8cb;font-size: small;" title="Back to search results" (click)="BacktoSearchResult()">
             <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to results
         </div>
@@ -13,55 +13,64 @@
                         <mat-form-field class="formtext" appearance="outline">
                             <mat-label>Problem Reported</mat-label>
                             <textarea matInput placeholder="Ex. Reported issue is with.." formControlName="ProblemReported"></textarea>
-                            <mat-error *ngIf="EditForm.controls['ProblemReported'].errors?.required">This field is mandatory</mat-error>
+                            <mat-error *ngIf="EditForm.controls['ProblemReported'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row">
                         <mat-form-field appearance="outline" style="width: 45%; left: 50px;">
                             <mat-label>Functional Area</mat-label>
                             <input matInput placeholder="Ex. ETKT Issue/SDS/FEED etc..." formControlName="FunctionalArea">
-                            <mat-error *ngIf="EditForm.controls['FunctionalArea'].errors?.required">This field is mandatory</mat-error>
+                            <mat-error *ngIf="EditForm.controls['FunctionalArea'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 20%; padding-left: 100px;">
                             <mat-label>Severity</mat-label>
-                            <select matNativeControl formControlName="Severity">                       
-                                <option >1</option>
-                                <option >2</option>
-                                <option >3</option>                       
-                                <option >4</option>  
-                                <option >5</option>  
-                        </select>
-                            <mat-error *ngIf="EditForm.controls['Severity'].errors?.required">This field is mandatory</mat-error>
+                            <select matNativeControl formControlName="Severity">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            <mat-error *ngIf="EditForm.controls['Severity'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 20%; padding-left: 50px;">
                             <mat-label>IR NO</mat-label>
                             <input matInput placeholder="IR#" formControlName="IR">
-                            <mat-error *ngIf="EditForm.controls['IR'].errors?.required">This field is mandatory</mat-error>
+                            <mat-error *ngIf="EditForm.controls['IR'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row">
                         <mat-form-field appearance="outline" style="width: 20%; padding-left: 50px;">
                             <mat-label>Reported Date</mat-label>
                             <input matInput placeholder="MM-DD-YY" formControlName="Date">
-                            <mat-error *ngIf="EditForm.controls['Date'].errors?.required">This field is mandatory</mat-error>
-                            <mat-error *ngIf="EditForm.controls['Date'].errors?.hasFormat">Input date in MM-DD-YY format</mat-error>
+                            <mat-error *ngIf="EditForm.controls['Date'].errors?.required">This field is mandatory
+                            </mat-error>
+                            <mat-error *ngIf="EditForm.controls['Date'].errors?.hasFormat">Input date in MM-DD-YY format
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 40%; padding-left: 50px;">
                             <mat-label>IA</mat-label>
-                            <input matInput placeholder="Ex. Meera" formControlName="IA">
-                            <mat-error *ngIf="EditForm.controls['IA'].errors?.required">This field is mandatory</mat-error>
+                            <input matInput placeholder="Ex. Mia White" formControlName="IA">
+                            <mat-error *ngIf="EditForm.controls['IA'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 20%; padding-left: 50px;">
                             <mat-label>Reported By</mat-label>
                             <input matInput placeholder="UA/CM/US/VS.." formControlName="ReportedBy">
-                            <mat-error *ngIf="EditForm.controls['ReportedBy'].errors?.required">This field is mandatory</mat-error>
+                            <mat-error *ngIf="EditForm.controls['ReportedBy'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field class="formtext" appearance="outline">
                             <mat-label>Root Cause</mat-label>
                             <textarea matInput placeholder="Ex. Problem with PNR" formControlName="RootCause"></textarea>
-                            <mat-error *ngIf="EditForm.controls['RootCause'].errors?.required">This field is mandatory</mat-error>
+                            <mat-error *ngIf="EditForm.controls['RootCause'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field class="formtext" appearance="outline">
                             <mat-label>Resolution/Work around</mat-label>
@@ -85,20 +94,31 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 25%; padding-left: 50px;">
                             <mat-label>Team</mat-label>
-                            <select matNativeControl formControlName="Team">                       
+                            <select matNativeControl formControlName="Team">
                                 <option class="list-bg" value="RES">RES</option>
                                 <option class="list-bg" value="ETKT">ETKT</option>
-                                <option class="list-bg" value="ACI">ACI</option>                       
-                        </select>
-                            <mat-error *ngIf="EditForm.controls['Team'].errors?.required">This field is mandatory</mat-error>
+                                <option class="list-bg" value="ACI">ACI</option>
+                            </select>
+                            <mat-error *ngIf="EditForm.controls['Team'].errors?.required">This field is mandatory
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div>
                         <button mat-raised-button type="submit" *ngIf="AddPage" color="primary" class="Update-btn" (click)="openDialog('Add')">Add</button>
                         <button mat-raised-button type="submit" *ngIf="!AddPage" color="primary" class="Update-btn" (click)="openDialog('Update')">Update</button>
                         <button mat-raised-button type="submit" *ngIf="AddPage" color="asent" class="Delete-btn" (click)="openDialog('Reset')">Clear</button>
-                        <button mat-raised-button type="submit" *ngIf="supervisor=='banu.meera@dxc.com'" color="warn" class="Delete-btn" (click)="openDialog('Delete')">Delete</button>
+                        <button mat-raised-button type="submit" *ngIf="!AddPage && supervisor=='banu.meera@dxc.com'" color="warn" class="Delete-btn" (click)="openDialog('Delete')">Delete</button>
                         <button mat-raised-button type="button" class="Delete-btn" (click)="openDialog('Cancel')">Cancel</button>
+                    </div>
+                    <div *ngIf="showLoadingIndicator" class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
                 </form>
             </mat-card>

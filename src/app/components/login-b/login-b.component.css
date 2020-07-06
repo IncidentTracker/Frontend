@@ -1,154 +1,60 @@
-.mat-form-field-appearance-outline {
-    margin: -10px 2px 5px;
-}
-
-.container {
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: repeat(2, 100px);
-}
-
 .background {
     background: transparent url('../../../assets/bg.png') 0% 0% no-repeat padding-box;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    box-sizing: border-box;
     opacity: 100%;
     height: 100%;
 }
 
 .mph-logo {
-    top: 30pt;
-    left: 39pt;
-    width: 242pt;
-    height: 70pt;
-    /* background-image: url('../../../assets/Mphasis_Login.png'); */
-    background: transparent url('../../../assets/Mphasis_Login.png') 0% 0% no-repeat padding-box;
-    opacity: 10;
-    /* display: flex; */
     position: absolute;
+    margin-top: 1%;
+    margin-left: -2%;
+    opacity: 10;
 }
 
 .eye-sym {
-    top: 26.42px;
-    left: 458.93px;
-    width: 53.66px;
-    height: 56.58px;
     position: absolute;
-    vertical-align: middle;
-    background-image: url('../../../assets/Group 40.png');
-    background: transparent url('../../../assets/Group 40.png') 0% 0% no-repeat padding-box;
-    opacity: 1;
+    margin-top: 3%;
+    margin-left: 29%;
+    opacity: 10;
 }
 
 .oncall {
-    top: 80px;
-    left: 570px;
-    width: 130px;
-    height: 37px;
     position: absolute;
+    margin-top: 3.5%;
+    margin-left: 33.5%;
+    opacity: 10;
+    font: Bold Italic 16pt/24pt Montserrat;
     align-content: left;
-    font: Bold Italic 100pt/24pt Montserrat;
-    letter-spacing: 0;
+    letter-spacing: 1px;
     text-align: justify;
-    /* vertical-align: middle; */
     color: #FFFFFF;
-    opacity: 100;
 }
 
- ::ng-deep.mat-card-content:hover {
-    box-shadow: transparent, !important;
-    box-sizing: content-box;
-}
-
-.loginbox .psw {
-    background-color: white;
-    color: white;
-    appearance: legacy;
-    filter: brightness(500%);
-    background-size: auto;
-    text-align: center;
-}
-
-.lable {
-    color: aqua;
-    font-style: italic;
-    font-size: smaller;
-}
-
-.reset {
-    color: white;
-    font-size: small;
-}
-
-.input {
-    color: white;
-    z-index: auto;
-}
-
- ::ng-deep.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: white !important;
-}
-
- ::ng-deep.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: white !important;
-    ;
-}
-
-.my-form {
-    top: 118px;
-    left: 892px;
-    width: 375px;
-    right: 99pt;
-    height: 374px;
-    bottom: 276pt;
-    box-shadow: 0px 6px 12px #00000029;
-    border-radius: 6px;
-    opacity: 1;
-    position: absolute;
-    border-color: wheat;
-    align-content: center;
-}
-
-.book {
-    position: absolute;
-    background-position: center;
-    top: 118pt;
-    left: 700pt;
-    right: 99pt;
-    bottom: 276pt;
-    width: 200pt;
-    height: 200pt;
-    background-image: transparent url(../../../assets/images.jpg) 50% 50%;
-    /* box-shadow: 3px 3px 3px 3px gray; */
-    box-sizing: 6px 6px 6px 6px;
-    border-color: wheat;
-    align-content: center;
-    opacity: 100;
-}
-
-.form1:hover {
-    box-shadow: 10px transparent;
-}
-
-.book:hover {
+.bookL:hover {
     box-shadow: currentColor;
 }
 
-.form1 {
-    align-content: stretch;
-    box-shadow: #ffffff;
-    position: relative;
-    display: inline-block;
-    box-shadow: 0 1px 2px white;
-    transition: all 0.3s ease-in-out;
+.bookL {
+    position: absolute;
+    background-position: center;
+    background-image: transparent url(../../../assets/images.jpg) 50% 50%;
+    margin-top: 5%;
+    margin-left: 70%;
+    width: 20%;
+    height: auto;
+    box-sizing: 6px 6px 6px 6px;
+    border-color: #caad76;
+    align-content: center;
+    opacity: 100;
 }
 
-* {
-    box-sizing: border-box;
+.mat-form-field-appearance-outline {
+    margin: -10px 2px 5px;
+    margin-left: -4%;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -161,21 +67,22 @@
     color: rgb(176, 243, 248);
 }
 
+.pw {
+    -webkit-text-security: disc;
+}
+
 .error {
     color: red;
     font-style: italic;
 }
 
-.list-select {
-    background-color: transparent;
-}
-
-.list-bg {
-    background-color: rgb(21, 25, 80);
-    color: rgb(176, 243, 248);
+.lable {
+    color: aqua;
     font-style: italic;
+    font-size: smaller;
 }
 
-.pw {
-    -webkit-text-security: disc;
+.reset {
+    color: white;
+    font-size: small;
 }

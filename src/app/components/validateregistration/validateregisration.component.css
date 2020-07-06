@@ -1,78 +1,79 @@
+.background {
+    background: transparent url('../../../assets/bg.png') 0% 0% no-repeat padding-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    opacity: 100%;
+    height: 100%;
+}
+
+.mph-logo {
+    position: absolute;
+    margin-top: 1%;
+    margin-left: -2%;
+    opacity: 10;
+}
+
+.eye-sym {
+    position: absolute;
+    margin-top: 3%;
+    margin-left: 29%;
+    opacity: 10;
+}
+
+.oncall {
+    position: absolute;
+    margin-top: 3.5%;
+    margin-left: 33.5%;
+    opacity: 10;
+    font: Bold Italic 16pt/24pt Montserrat;
+    align-content: left;
+    letter-spacing: 1px;
+    text-align: justify;
+    color: #FFFFFF;
+}
+
+.bookV:hover {
+    box-shadow: currentColor;
+}
+
+.bookV {
+    position: absolute;
+    background-position: center;
+    background-image: transparent url(../../../assets/images.jpg) 50% 50%;
+    margin-top: 5%;
+    margin-left: 70%;
+    width: 20%;
+    height: auto;
+    box-sizing: 6px 6px 6px 6px;
+    border-color: #caad76;
+    align-content: center;
+    opacity: 100;
+}
+
+.mat-form-field-appearance-outline {
+    margin: -10px 2px 5px;
+    margin-left: -4%;
+}
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
     color: rgb(189, 74, 145);
-    border: 0
+    border: 0;
+    padding: 6px;
 }
 
 .mat-form-field-appearance-outline .mat-input-element {
     color: rgb(176, 243, 248);
 }
 
-.container {
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: repeat(2, 100px);
+.pw {
+    -webkit-text-security: disc;
 }
 
-.background {
-    background: transparent url('../../../assets/bg.png') 0% 0% no-repeat padding-box;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 100%;
-    height: 100%;
-}
-
-.mph-logo {
-    top: 30pt;
-    left: 39pt;
-    width: 242pt;
-    height: 70pt;
-    /* background-image: url('../../../assets/Mphasis_Login.png'); */
-    background: transparent url('../../../assets/Mphasis_Login.png') 0% 0% no-repeat padding-box;
-    opacity: 10;
-    /* display: flex; */
-    position: absolute;
-}
-
-.eye-sym {
-    top: 26.42px;
-    left: 458.93px;
-    width: 53.66px;
-    height: 56.58px;
-    position: absolute;
-    vertical-align: middle;
-    background-image: url('../../../assets/Group 40.png');
-    background: transparent url('../../../assets/Group 40.png') 0% 0% no-repeat padding-box;
-    opacity: 1;
-}
-
-.oncall {
-    top: 80px;
-    left: 570px;
-    width: 130px;
-    height: 37px;
-    position: absolute;
-    align-content: left;
-    font: Bold Italic 20pt/24pt Montserrat;
-    letter-spacing: 0;
-    text-align: justify;
-    /* vertical-align: middle; */
-    color: #FFFFFF;
-    opacity: 100;
-}
-
-.track {
-    top: 87px;
-    left: 675px;
-    width: 109px;
-    height: 37px;
-    position: absolute;
-    text-align: justify;
-    font: Lighter Italic 30px/24px Montserrat;
-    letter-spacing: 0;
-    color: #FFFFFF;
-    opacity: 1;
+.error {
+    color: red;
+    font-style: italic;
 }
 
 .lable {
@@ -81,45 +82,7 @@
     font-size: smaller;
 }
 
-.input {
-    color: rgb(37, 233, 19);
-    z-index: auto;
-}
-
-.book {
-    position: absolute;
-    background-position: center;
-    top: 40pt;
-    left: 700pt;
-    right: 99pt;
-    bottom: 276pt;
-    width: 200pt;
-    height: 200pt;
-    background-image: transparent url(../../../assets/images.jpg) 50% 50%;
-    /* box-shadow: 3px 3px 3px 3px gray; */
-    box-sizing: 6px 6px 6px 6px;
-    border-color: #caad76;
-    align-content: center;
-    opacity: 100;
-}
-
-.form1:hover {
-    box-shadow: 10px transparent;
-}
-
-.book:hover {
-    box-shadow: currentColor;
-}
-
-.form1 {
-    align-content: stretch;
-    box-shadow: #FFFFFF;
-    position: relative;
-    display: inline-block;
-    box-shadow: 0 1px 2px white;
-    transition: all 0.3s ease-in-out;
-}
-
-* {
-    box-sizing: border-box;
+.reset {
+    color: white;
+    font-size: small;
 }

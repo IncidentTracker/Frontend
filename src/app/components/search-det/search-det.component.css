@@ -91,12 +91,11 @@
 }
 
 .example-card {
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
     position: absolute;
-    width: 200px;
-    margin-top: 100px;
-    margin-left: 990px;
+    width: 20%;
+    margin-top: 7.8%;
+    margin-left: 79%;
 }
 
 .example-section {

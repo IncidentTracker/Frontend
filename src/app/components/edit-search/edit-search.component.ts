@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -9,23 +9,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CustomValidators } from 'src/app/services/custom-validators';
 
-
-/** Error when invalid control is dirty, touched, or submitted. */
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-//   }
-// }
-
 @Component({
   selector: 'app-edit-search',
   templateUrl: './edit-search.component.html',
-  styleUrls: ['./edit-search.component.css']
+  styleUrls: ['./edit-search.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class EditSearchComponent implements OnInit {
   // matcher = new MyErrorStateMatcher();
+  showLoadingIndicator: boolean;
   AddPage: boolean = true;
   EditForm: FormGroup;
   message: string;
@@ -52,8 +45,6 @@ export class EditSearchComponent implements OnInit {
 
 
     this.supervisor = localStorage.currentUserEmail;
-
-    //Inside constructor
     this.createForm();
 
     var CurrentURL;
@@ -99,7 +90,7 @@ export class EditSearchComponent implements OnInit {
       LastModifiedDate: new FormControl(),
     });
     this.EditForm.patchValue({ LastModifiedBy: localStorage.currentUserEmail });
-    this.EditForm.patchValue({ LastModifiedDate: this.LastModifiedDate});
+    this.EditForm.patchValue({ LastModifiedDate: this.LastModifiedDate });
   }
 
   onSubmit() {
@@ -111,7 +102,7 @@ export class EditSearchComponent implements OnInit {
     if (action === 'Add') {
       if (!this.EditForm.valid) {
         alert("Fill in the mandatory fields");
-        this.Flag = 'X'; 
+        this.Flag = 'X';
       }
       else {
         this.message = "Are you sure want to Add ?";
@@ -138,6 +129,7 @@ export class EditSearchComponent implements OnInit {
     }
 
     if (this.Flag != 'X') {
+
       let dialogref = this.dialog.open(DialogComponent, { data: { text: this.message } });
 
       dialogref.afterClosed().subscribe(results => {
@@ -148,6 +140,7 @@ export class EditSearchComponent implements OnInit {
         }
 
         if (this.DialogResult == 'confirm') {
+          this.showLoadingIndicator = true;
           if (this.Flag === 'A') {
             this.Add();
           }
@@ -173,6 +166,7 @@ export class EditSearchComponent implements OnInit {
     NewData.push(this.EditForm.value);
     this.SearchSer.AddData(NewData[0])
       .subscribe(data => {
+        this.showLoadingIndicator = false;
         alert(data.Error);
         this.BacktoSearchResult();
       });
@@ -183,28 +177,33 @@ export class EditSearchComponent implements OnInit {
   Update() {
     var EditData = [];
     EditData.push(this.EditForm.value);
-
     this.SearchSer.updateData(this.EditSearchData._id, EditData[0])
       .subscribe(data => {
-        alert(data.Error);
-        this.BacktoSearchResult()
-      });    
-  }
-
-
-  Delete() {
-    this.SearchSer.deleteData(this.EditSearchData._id)
-      .subscribe(data => {
+        this.showLoadingIndicator = false;
         alert(data.Error);
         this.BacktoSearchResult()
       });
   }
 
+
+  // Delete existing details
+  Delete() {
+    this.SearchSer.deleteData(this.EditSearchData._id)
+      .subscribe(data => {
+        this.showLoadingIndicator = false;
+        alert(data.Error);
+        this.showLoadingIndicator = false;
+        this.BacktoSearchResult()
+      });
+  }
+
   Reset() {
+    this.showLoadingIndicator = false;
     this.EditForm.reset();
   }
 
   BacktoSearchResult() {
+    this.showLoadingIndicator = false;
     this.router.navigate(['/list']);
   }
 

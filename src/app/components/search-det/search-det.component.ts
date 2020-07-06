@@ -12,6 +12,7 @@ export class SearchDetComponent implements OnInit {
   Username: string;
   TextSearch: string;
   showCount: number = 0;
+  showText: string;
   filter1 = { ETKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
   onData: any[];
   filterdata: any[];
@@ -53,6 +54,7 @@ export class SearchDetComponent implements OnInit {
 
   onEnter() {
     this.showLoadingIndicator = true;
+    this.showText = "result(s) were found for the search for";
     this.SearchSer.SearchDetails(this.TextSearch).subscribe(
       (data: any) => {
         this.showLoadingIndicator = false;
@@ -66,7 +68,8 @@ export class SearchDetComponent implements OnInit {
 
   DisplayAll() {
     this.showLoadingIndicator = true;
-    this.TextSearch = " display all records";
+    this.showText = "result(s) were found in total";
+    this.TextSearch = "";
     this.SearchSer.searchAll().subscribe(
       (data: any) => {
         this.showLoadingIndicator = false;
