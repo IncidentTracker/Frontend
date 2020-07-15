@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   FillForm: FormGroup;
   submitted = false;
+  hide = true; 
 
   constructor(public formBuilder: FormBuilder, private SignSer: SignUpService, public router: Router) { }
 
@@ -33,25 +34,31 @@ export class SignupComponent implements OnInit {
       });
   }
   get f() { return this.FillForm.controls; }
+
   onSubmit() {
+    var mphasisUser = this.FillForm.value.email;
+    var isMphasisUser = mphasisUser.slice(mphasisUser.length - 12, mphasisUser.length);
     if (this.FillForm.valid) {
       this.submitted = true;
-      var NewData = [];
-      NewData.push(this.FillForm.value);
+      if (isMphasisUser == "@mphasis.com") {
+        var NewData = [];
+        NewData.push(this.FillForm.value);
 
-      this.SignSer.AddData(NewData[0])
-        .subscribe(data => {
-          alert(data.Error);
-          if (data.Success) {
-            this.SignSer.GenerateOTP(this.FillForm.value.email)
-              .subscribe(data => {
-                alert(data.Error);
-                if (data.Success)
-                this.router.navigate(['/first-time-token']);
-              });
-          //  this.backToLogin();
-          }
-        });
+        this.SignSer.AddData(NewData[0])
+          .subscribe(data => {
+            alert(data.Error);
+            if (data.Success) {
+              this.SignSer.GenerateOTP(this.FillForm.value.email)
+                .subscribe(data => {
+                  alert(data.Error);
+                  if (data.Success)
+                    this.router.navigate(['/first-time-token']);
+                });
+            }
+          });
+      }
+      else
+        alert("Use your Mphasis id for Registration!");
     } else {
       alert("Fill in the mandatory fields");
     }
