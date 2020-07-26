@@ -8,20 +8,28 @@ import * as _ from 'lodash';
   templateUrl: './search-det.component.html',
   styleUrls: ['./search-det.component.css']
 })
+
 export class SearchDetComponent implements OnInit {
+
   Username: string;
   TextSearch: string;
+  supervisor: string;
   showCount: number = 0;
   showText: string;
-  filter1 = { ETKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
+  filter1 = { TKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
   onData: any[];
-  filterdata: any[];
-  filterdata2: any[];
-  filterdata3: any[];
-  dispdata1: any[];
-  dispdata2: any[];
-  dispdata3: any[];
-  dispdata4: any[];
+
+  filterdata = [];
+  filterdata1 = [];
+  filterdata2 = [];
+  filterdata3 = [];
+  filterdata4 = [];
+
+  dispdata = [];
+  dispdata1 = [];
+  dispdata2 = [];
+  dispdata3 = [];
+  dispdata4 = [];
 
   splicedData: any;
   pageLength: any;
@@ -42,13 +50,12 @@ export class SearchDetComponent implements OnInit {
       this.TextSearch = this.SearchSer.searchStr;
       this.onEnter();
     }
-
-
   }
 
   ngOnInit(): void {
     this.showLoadingIndicator = true;
     this.Username = localStorage.currentUser;
+    this.supervisor = localStorage.currentUserEmail;
     this.onEnter();
   }
 
@@ -76,8 +83,6 @@ export class SearchDetComponent implements OnInit {
         this.getData(data);
         this.onData = data;
         this.filterdata = data;
-        this.filterdata = _.sortBy(this.filterdata, (o: { LastModifiedDate: any; }) => o.LastModifiedDate);
-        this.filterdata.reverse();
         this.setPageData();
       }
     );
@@ -91,7 +96,6 @@ export class SearchDetComponent implements OnInit {
     this.SearchSer.EditSearchData = data;
     this.SearchSer.searchStr = this.TextSearch;
     this.router.navigate(['/update']);
-
   }
 
   addData() {
@@ -101,11 +105,13 @@ export class SearchDetComponent implements OnInit {
 
   filterchange() {
     this.filterdata = this.onData.filter(x =>
-      ((x.Team === "TKT" || x.Team === "ETKT") && this.filter1.ETKT) ||
+      ((x.Team === "TKT" || x.Team === "ETKT") && this.filter1.TKT) ||
       (x.Team === "RES" && this.filter1.Genres) ||
       (x.Team === "ACI" && this.filter1.ACI));
-    this.dispdata2 = this.filterdata;
+    this.dispdata = this.filterdata;
+    this.getData(this.dispdata);
     this.setCombinationRecords();
+    this.getData(this.filterdata);
     this.setPageData();
   }
 
@@ -117,7 +123,9 @@ export class SearchDetComponent implements OnInit {
       (x.Severity === 4 && this.filter1.Sev_4) ||
       (x.Severity === 5 && this.filter1.Sev_5));
     this.dispdata1 = this.filterdata;
+    this.getData(this.dispdata1);
     this.setCombinationRecords();
+    this.getData(this.filterdata);
     this.setPageData();
   }
 
@@ -131,7 +139,7 @@ export class SearchDetComponent implements OnInit {
     });
     this.filterdata = this.onData.filter(y =>
       (y.checked === true))
-    this.dispdata3 = this.filterdata;
+    this.dispdata2 = this.filterdata;
     this.setCombinationRecords();
     this.setPageData();
   }
@@ -146,18 +154,34 @@ export class SearchDetComponent implements OnInit {
     });
     this.filterdata = this.onData.filter(y =>
       (y.checked === true))
+    this.dispdata3 = this.filterdata;
+    this.setCombinationRecords();
+    this.setPageData();
+  }
+
+  filterchange4() {
+    this.filterdata4.forEach(ela => {
+      this.dispdata.forEach(elb => {
+        if (elb.FunctionalArea == ela.FunctionalArea) {
+          elb.checked = ela.checked;
+        }
+      });
+    });
+    this.filterdata = this.dispdata.filter(y =>
+      (y.checked === true))
     this.dispdata4 = this.filterdata;
     this.setCombinationRecords();
     this.setPageData();
   }
 
   getData(data: any[]) {
+
     data.forEach(function (item) { item.checked = false; });
+
     this.filterdata2 = [];
     data.forEach(element => {
       this.filterdata2.push({ IA: element.IA, checked: element.checked });
     });
-
     this.filterdata2 = this.filterdata2.filter((item, index, self) =>
       index === self.findIndex((t) => (
         t.IA === item.IA
@@ -169,7 +193,6 @@ export class SearchDetComponent implements OnInit {
     data.forEach(element => {
       this.filterdata3.push({ ReportedBy: element.ReportedBy, checked: element.checked });
     });
-
     this.filterdata3 = this.filterdata3.filter((item, index, self) =>
       index === self.findIndex((t) => (
         t.ReportedBy === item.ReportedBy
@@ -177,6 +200,16 @@ export class SearchDetComponent implements OnInit {
     )
     this.filterdata3 = _.sortBy(this.filterdata3, (o: { ReportedBy: any; }) => o.ReportedBy)
 
+    this.filterdata4 = [];
+    data.forEach(element => {
+      this.filterdata4.push({ FunctionalArea: element.FunctionalArea, checked: element.checked });
+    });
+    this.filterdata4 = this.filterdata4.filter((item, index, self) =>
+      index === self.findIndex((t) => (
+        t.FunctionalArea === item.FunctionalArea
+      ))
+    )
+    this.filterdata4 = _.sortBy(this.filterdata4, (o: { FunctionalArea: any; }) => o.FunctionalArea)
     this.showCount = data.length;
   }
 
@@ -194,8 +227,11 @@ export class SearchDetComponent implements OnInit {
   }
 
   setCombinationRecords() {
-    this.displaydataNew = [].concat(this.dispdata1, this.dispdata2, this.dispdata3, this.dispdata4);
 
+    this.displaydataNew = [];
+    this.displaydataNew1 = [];
+
+    this.displaydataNew = [].concat(this.dispdata, this.dispdata1, this.dispdata2, this.dispdata3, this.dispdata4);
     this.displaydataNew1 = this.displaydataNew.filter(function (element) {
       return element !== undefined;
     });
@@ -205,6 +241,9 @@ export class SearchDetComponent implements OnInit {
         t._id === item._id
       ))
     )
+
+    if (this.dispdata !== undefined && this.dispdata.length)
+      this.getCombinationRecords(this.displaydataNew, this.dispdata);
 
     if (this.dispdata1 !== undefined && this.dispdata1.length)
       this.getCombinationRecords(this.displaydataNew, this.dispdata1);

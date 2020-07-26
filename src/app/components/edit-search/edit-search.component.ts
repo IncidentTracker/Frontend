@@ -75,7 +75,7 @@ export class EditSearchComponent implements OnInit {
     this.EditForm = this.formBuilder.group({
       LastModifiedBy: new FormControl(),
       Date: new FormControl(null, [Validators.required, CustomValidators.dateValidator(/^[0-9]{2}-[0-9]{2}-[0-9]{2}$/, { hasFormat: true })]),
-      IA: new FormControl(null, [Validators.required]),
+      IA: new FormControl(),
       IR: new FormControl(null, [Validators.required]),
       Severity: new FormControl(null, [Validators.required]),
       FunctionalArea: new FormControl(null, [Validators.required]),
@@ -89,6 +89,7 @@ export class EditSearchComponent implements OnInit {
       Team: new FormControl(null, [Validators.required]),
       LastModifiedDate: new FormControl(),
     });
+    this.EditForm.patchValue({ IA: this.getIAName(localStorage.currentUserEmail) });
     this.EditForm.patchValue({ LastModifiedBy: localStorage.currentUserEmail });
     this.EditForm.patchValue({ LastModifiedDate: this.LastModifiedDate });
   }
@@ -197,6 +198,12 @@ export class EditSearchComponent implements OnInit {
       });
   }
 
+  getIAName(IAid){
+    var IAID = IAid.slice(0,IAid.length - 12);
+    var IAname = IAID.replace(".", " ");
+    return IAname;
+  }
+  
   Reset() {
     this.showLoadingIndicator = false;
     this.EditForm.reset();

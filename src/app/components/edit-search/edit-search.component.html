@@ -54,9 +54,7 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 40%; padding-left: 50px;">
                             <mat-label>IA</mat-label>
-                            <input matInput placeholder="Ex. Mia White" formControlName="IA">
-                            <mat-error *ngIf="EditForm.controls['IA'].errors?.required">This field is mandatory
-                            </mat-error>
+                            <input matInput formControlName="IA" readonly=true>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style="width: 20%; padding-left: 50px;">
                             <mat-label>Reported By</mat-label>
@@ -96,7 +94,7 @@
                             <mat-label>Team</mat-label>
                             <select matNativeControl formControlName="Team">
                                 <option class="list-bg" value="RES">RES</option>
-                                <option class="list-bg" value="ETKT">ETKT</option>
+                                <option class="list-bg" value="TKT">TKT</option>
                                 <option class="list-bg" value="ACI">ACI</option>
                             </select>
                             <mat-error *ngIf="EditForm.controls['Team'].errors?.required">This field is mandatory
@@ -107,7 +105,7 @@
                         <button mat-raised-button type="submit" *ngIf="AddPage" color="primary" class="Update-btn" (click)="openDialog('Add')">Add</button>
                         <button mat-raised-button type="submit" *ngIf="!AddPage" color="primary" class="Update-btn" (click)="openDialog('Update')">Update</button>
                         <button mat-raised-button type="submit" *ngIf="AddPage" color="asent" class="Delete-btn" (click)="openDialog('Reset')">Clear</button>
-                        <button mat-raised-button type="submit" *ngIf="!AddPage && supervisor=='banu.meera@mphasis.com'" color="warn" class="Delete-btn" (click)="openDialog('Delete')">Delete</button>
+                        <button mat-raised-button type="submit" *ngIf="!AddPage && (supervisor=='banu.meera@mphasis.com' || supervisor=='ashmita.ghosh@mphasis.com')" color="warn" class="Delete-btn" (click)="openDialog('Delete')">Delete</button>
                         <button mat-raised-button type="button" class="Delete-btn" (click)="openDialog('Cancel')">Cancel</button>
                     </div>
                     <div *ngIf="showLoadingIndicator" class="lds-roller">

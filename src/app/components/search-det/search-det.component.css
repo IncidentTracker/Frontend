@@ -1,3 +1,133 @@
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+    background: white;
+}
+
+.heading {
+    border-bottom: 2px solid #6CCACC;
+    padding-bottom: 9px;
+    position: relative;
+    color: #6CCACC;
+}
+
+.rootcause {
+    top: 228px;
+    left: 62px;
+    text-align: left;
+    font: roboto 14px/24px Lato;
+    letter-spacing: 0px;
+    color: #333333D6;
+    opacity: 1;
+}
+
+.IA {
+    top: 15px;
+    left: 62px;
+    width: 68px;
+    height: 17px;
+    text-align: left;
+    font: Regular 14px/17px Lato;
+    letter-spacing: 0px;
+    color: #3333338A;
+    opacity: 1;
+    white-space: nowrap;
+}
+
+.IssueRep {
+    width: 200px;
+    height: 100px;
+    text-align: left;
+    font: Bold 14px/17px Lato;
+    letter-spacing: 0px;
+    color: #CC1D7C;
+    opacity: 1;
+}
+
+.IRNO {
+    top: 168px;
+    left: 62px;
+    width: 86px;
+    height: 17px;
+    text-align: left;
+    font: Regular 14px/17px Lato;
+    letter-spacing: 0px;
+    color: #000E0F;
+    opacity: 1;
+}
+
+.severity {
+    top: 168px;
+    width: 57px;
+    height: 19px;
+    text-align: left;
+    letter-spacing: 0px;
+    padding-left: 100px;
+    opacity: 1;
+    color: #3333338A;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 500px;
+    height: 541px;
+    margin-left: 42PX;
+    margin-top: 28px;
+    opacity: 1;
+    background-color: transparent!important;
+}
+
+.form_main {
+    width: 100%;
+}
+
+.form_main h4 {
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.toolbar {
+    height: auto;
+    border-bottom: 1.5px solid lightslategrey;
+}
+
+.text {
+    color: #6CCACC;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.expansion {
+    border-radius: 0px;
+    border: none;
+    box-shadow: none;
+}
+
+.report {
+    top: 228px;
+    padding-left: 200px;
+    width: 78px;
+    height: 17px;
+    text-align: left;
+    font: Regular 14px/17px Lato;
+    letter-spacing: 0px;
+    color: #3333338A;
+    opacity: 1;
+}
+
+.editser {
+    top: 168px;
+    left: 257px;
+    width: 21px;
+    height: 21px;
+    padding-left: 50px;
+    opacity: 1;
+}
+
 .example-spacer {
     flex: 1 1 auto;
 }
@@ -5,18 +135,6 @@
 .container {
     flex-direction: row, row-reverse, column, column-reverse;
     background-color: #fafafa;
-}
-
-.search {
-    margin-top: 32px;
-    margin-left: 47px;
-    width: 48%;
-    height: 40px;
-    background-color: #fafafa;
-    border: 2px solid #6CCACC;
-    border-radius: 40px;
-    opacity: 1;
-    display: flex;
 }
 
 .mat-form-field-infix ng-tns-c87-0 {
@@ -37,45 +155,22 @@
     border: none;
 }
 
+.search {
+    margin-top: 32px;
+    margin-left: 47px;
+    width: 48%;
+    height: 40px;
+    background-color: #fafafa;
+    border: 2px solid #6CCACC;
+    border-radius: 40px;
+    opacity: 1;
+    display: flex;
+}
+
 .eyeImage {
     width: 55px;
     height: 45px;
     opacity: 1;
-}
-
-.element {
-    top: 18px;
-    left: 1200px;
-    width: 33px;
-    height: 33px;
-    flex-direction: row-reverse;
-    position: absolute;
-}
-
-.toolbar {
-    height: auto;
-    border-bottom: 1.5px solid lightslategrey;
-}
-
-.search_2nd {
-    margin-top: 25px;
-    margin-left: 153px;
-    width: 17px;
-    height: 17px;
-    display: flex;
-    opacity: 1;
-}
-
-.text {
-    color: #6CCACC;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.expansion {
-    border-radius: 0px;
-    border: none;
-    box-shadow: none;
 }
 
 .container {
@@ -112,180 +207,6 @@
 
 .example-margin {
     margin: 0 5px;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    width: 500px;
-    height: 541px;
-    margin-left: 42PX;
-    margin-top: 28px;
-    opacity: 1;
-    background-color: transparent!important;
-}
-
-.form_main {
-    width: 100%;
-}
-
-.form_main h4 {
-    font-family: roboto;
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 15px;
-    margin-top: 20px;
-    text-transform: uppercase;
-}
-
-.heading {
-    border-bottom: 2px solid #6CCACC;
-    padding-bottom: 9px;
-    position: relative;
-    color: #6CCACC;
-}
-
-.IRNO {
-    top: 168px;
-    left: 62px;
-    width: 86px;
-    height: 17px;
-    text-align: left;
-    font: Regular 14px/17px Lato;
-    letter-spacing: 0px;
-    color: #000E0F;
-    opacity: 1;
-}
-
-.severity {
-    top: 168px;
-    width: 57px;
-    height: 19px;
-    text-align: left;
-    letter-spacing: 0px;
-    padding-left: 100px;
-    opacity: 1;
-    color: #3333338A;
-}
-
-.IssueRep {
-    top: 198px;
-    left: 62px;
-    width: 353px;
-    height: 17px;
-    text-align: left;
-    font: Bold 14px/17px Lato;
-    letter-spacing: 0px;
-    color: #CC1D7C;
-    opacity: 1;
-}
-
-.workaround {
-    top: 228px;
-    left: 62px;
-    width: 897px;
-    height: 41px;
-    text-align: left;
-    font: Regular 14px/24px Lato;
-    letter-spacing: 0px;
-    color: #333333D6;
-    opacity: 1;
-}
-
-.IA {
-    top: 15px;
-    left: 62px;
-    width: 68px;
-    height: 17px;
-    text-align: left;
-    font: Regular 14px/17px Lato;
-    letter-spacing: 0px;
-    color: #3333338A;
-    opacity: 1;
-    white-space: nowrap;
-}
-
-.Date {
-    top: 232px;
-    padding-left: 75px;
-    white-space: nowrap;
-}
-
-.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
-    background: white;
-}
-
-.rootcause {
-    top: 228px;
-    left: 62px;
-    width: 897px;
-    height: 41px;
-    text-align: left;
-    font: roboto 14px/24px Lato;
-    letter-spacing: 0px;
-    color: #333333D6;
-    opacity: 1;
-}
-
-.ActionResolutionWorkaround {
-    top: 228px;
-    left: 62px;
-    width: 897px;
-    height: 41px;
-    text-align: left;
-    font: Regular 14px/24px Lato;
-    letter-spacing: 0px;
-    color: orange;
-    opacity: 1;
-}
-
-.Functionality {
-    top: 228px;
-    padding-left: 4px;
-    width: 30px;
-    height: 17px;
-    text-align: left;
-    font: Regular 14px/17px Lato;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-    white-space: nowrap;
-}
-
-.fun_img {
-    top: 228px;
-    padding-left: 70px;
-    width: 14px;
-    height: 14px;
-}
-
-.report {
-    top: 228px;
-    padding-left: 200px;
-    width: 78px;
-    height: 17px;
-    text-align: left;
-    font: Regular 14px/17px Lato;
-    letter-spacing: 0px;
-    color: #3333338A;
-    opacity: 1;
-}
-
-.editser {
-    top: 168px;
-    left: 257px;
-    width: 21px;
-    height: 21px;
-    padding-left: 50px;
-    opacity: 1;
-}
-
-.account_circle {
-    top: 18px;
-    left: 1193px;
-    width: 33px;
-    height: 33px;
 }
 
 ::ng-deep .mat-form-field-underline {
