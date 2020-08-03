@@ -16,7 +16,7 @@ export class SearchDetComponent implements OnInit {
   supervisor: string;
   showCount: number = 0;
   showText: string;
-  filter1 = { TKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
+  filters = { TKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
   onData: any[];
 
   filterdata = [];
@@ -60,6 +60,7 @@ export class SearchDetComponent implements OnInit {
   }
 
   onEnter() {
+    this.filters = _.mapValues(this.filters, () => false);
     this.showLoadingIndicator = true;
     this.showText = "result(s) were found for the search for";
     this.SearchSer.SearchDetails(this.TextSearch).subscribe(
@@ -104,24 +105,29 @@ export class SearchDetComponent implements OnInit {
   }
 
   filterchange() {
+    this.filterdata =[];
+    console.log("Ondta:", this.onData);
     this.filterdata = this.onData.filter(x =>
-      ((x.Team === "TKT" || x.Team === "ETKT") && this.filter1.TKT) ||
-      (x.Team === "RES" && this.filter1.Genres) ||
-      (x.Team === "ACI" && this.filter1.ACI));
+      ((x.Team === "TKT" || x.Team === "ETKT") && this.filters.TKT) ||
+      (x.Team === "RES" && this.filters.Genres) ||
+      (x.Team === "ACI" && this.filters.ACI));
     this.dispdata = this.filterdata;
     this.getData(this.dispdata);
     this.setCombinationRecords();
     this.getData(this.filterdata);
+    console.log("Ondta before set page:", this.onData);
+
     this.setPageData();
   }
 
   filterchange1() {
+    console.log("Ondta:", this.onData);
     this.filterdata = this.onData.filter(x =>
-      (x.Severity === 1 && this.filter1.Sev_1) ||
-      (x.Severity === 2 && this.filter1.Sev_2) ||
-      (x.Severity === 3 && this.filter1.Sev_3) ||
-      (x.Severity === 4 && this.filter1.Sev_4) ||
-      (x.Severity === 5 && this.filter1.Sev_5));
+      (x.Severity === 1 && this.filters.Sev_1) ||
+      (x.Severity === 2 && this.filters.Sev_2) ||
+      (x.Severity === 3 && this.filters.Sev_3) ||
+      (x.Severity === 4 && this.filters.Sev_4) ||
+      (x.Severity === 5 && this.filters.Sev_5));
     this.dispdata1 = this.filterdata;
     this.getData(this.dispdata1);
     this.setCombinationRecords();
