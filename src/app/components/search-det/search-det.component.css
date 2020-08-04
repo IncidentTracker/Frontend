@@ -98,7 +98,7 @@
 .text {
     color: #6CCACC;
     font-size: 14px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
 .expansion {
@@ -320,4 +320,14 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.mat-icon {
+    color: #147a7c;
+}
+
+.matIconLable {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ChangeDetectorRef } from '@angular
 import { Router } from "@angular/router";
 import { SearchService } from '../../services/search.service';
 import * as _ from 'lodash';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-search-det',
@@ -18,6 +19,7 @@ export class SearchDetComponent implements OnInit {
   showText: string;
   filters = { TKT: false, Genres: false, ACI: false, Sev_1: false, Sev_2: false, Sev_3: false, Sev_4: false, Sev_5: false };
   onData: any[];
+  fileName: string ;
 
   filterdata = [];
   filterdata1 = [];
@@ -105,7 +107,7 @@ export class SearchDetComponent implements OnInit {
   }
 
   filterchange() {
-    this.filterdata =[];
+    this.filterdata = [];
     console.log("Ondta:", this.onData);
     this.filterdata = this.onData.filter(x =>
       ((x.Team === "TKT" || x.Team === "ETKT") && this.filters.TKT) ||
@@ -275,6 +277,22 @@ export class SearchDetComponent implements OnInit {
         }
       });
     });
+  }
+
+  exportexcel(): void {
+    if (!this.filterdata.length)
+      alert("Display the Incidents to be exported!");
+    else {
+      this.fileName='Oncall Tracker Sheet.xlsx';
+      let element = document.getElementById('excel-table'); 
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      XLSX.writeFile(wb, this.fileName);
+    }
+
   }
 
   logout() {

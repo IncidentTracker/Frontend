@@ -1,11 +1,15 @@
-<mat-toolbar style="color: transparent;">
+<mat-toolbar>
     <span class="spacer"></span>
     <mat-card-title class="text">Welcome {{Username}}!</mat-card-title>
-    <span class="spacer2"></span>
-    <button mat-raised-button (click)="addData()" value="add">Add</button> &nbsp;&nbsp;
-    <button mat-raised-button (click)="logout()" value="logout">Logout</button> &nbsp;&nbsp;
+    <div style="margin-left: 90%;">
+        <a style="cursor: pointer" (click)="addData()">
+            <mat-icon>note_add</mat-icon>
+        </a>&nbsp;&nbsp;
+        <a style="cursor: pointer" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+        </a>
+    </div>
 </mat-toolbar>
-
 <div fxLayout="row" fxLayoutAlign="center center" class="example">
 
     <div fxLayout="column" fxLayoutAlign="center center" fxFlex=100%>
@@ -29,4 +33,3 @@
         </div>
     </div>
 </div>
-<!-- This area will appear after serach result-->

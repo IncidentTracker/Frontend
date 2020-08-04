@@ -20,18 +20,28 @@
                     <div style="display: flex; margin-left: 10px;"><button type="submit" (click)="onEnter()" class="mic"><img src="../../assets/search-icon-small.svg" alt="search"></button></div>
                 </div>
             </div>
-            <button mat-raised-button (click)="logout()" value="logout">Logout</button> &nbsp;&nbsp;
+            <a style="cursor: pointer" (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+            </a>
         </mat-toolbar-row>
         <mat-toolbar-row>
             <div style="display: flex; margin-left: 153px; margin-top: 25px;">
-                <button class="mic"><img src="../../assets/search-svgrepo-com.svg" (click)="DisplayAll()"
-                        alt="search by voice"></button>
-                <span><label style="padding-left: 12px;" class="text">All</label></span>
+                <a class="matIconLable" (click)="DisplayAll()">
+                    <mat-icon>search</mat-icon>
+                    <span><label style="padding-left: 5px;" class="text">All</label></span>
+                </a>
             </div>
             <div style="display: flex; padding-left: 79px; margin-top: 25px;">
-                <button type="submit" class="mic"><img src="../../assets/baseline_note_add_black_18dp.png"
-                        (click)="addData()" alt="search"></button>
-                <span><label style="padding-left: 12px;" class="text">Add</label></span>
+                <a class="matIconLable" (click)="addData()">
+                    <mat-icon>note_add</mat-icon>
+                    <span><label style="padding-left: 5px;" class="text">Add</label></span>
+                </a>
+            </div>
+            <div style="display: flex; padding-left: 89px; margin-top: 25px;">
+                <a class="matIconLable" (click)="exportexcel()">
+                    <mat-icon> cloud_download</mat-icon>
+                    <span><label style="padding-left: 7px;" class="text">Export</label></span>
+                </a>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
@@ -64,7 +74,7 @@
                 <mat-expansion-panel class="mat-elevation-z0">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="text">
-                            <img src="../../assets/rating-graphic-svgrepo-com.svg" alt="search">&nbsp; Severity
+                            <img src="../../assets/rating-graphic-svgrepo-com.svg" alt="search" style="width: 13%;">&nbsp; Severity
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <section class="example-section">
@@ -191,4 +201,44 @@
         </mat-paginator>
     </div>
 </div>
+
+<table id="excel-table">
+    <div style="display: none;">
+        <tr>
+            <th>Date</th>
+            <th>IA</th>
+            <th>IR</th>
+            <th>Severity</th>
+            <th>FunctionalArea</th>
+            <th>ReportedBy</th>
+            <th>ProblemReported</th>
+            <th>RootCause</th>
+            <th>ActionResolutionWorkaround</th>
+            <th>LongTermSolutionNeeded</th>
+            <th>RedirectedtoOtherTeams</th>
+            <th>Timetakentoresolvetheproblem</th>
+            <th>Team</th>
+            <th>LastModifiedBy</th>
+            <th>LastModifiedDate</th>
+        </tr>
+        <tr *ngFor="let data of filterdata">
+            <td>{{ data.Date}}</td>
+            <td>{{ data.IA}}</td>
+            <td>{{ data.IR}}</td>
+            <td>{{ data.Severity}}</td>
+            <td>{{ data.FunctionalArea}}</td>
+            <td>{{ data.ReportedBy}}</td>
+            <td>{{ data.ProblemReported}}</td>
+            <td>{{ data.RootCause}}</td>
+            <td>{{ data.ActionResolutionWorkaround}}</td>
+            <td>{{ data.LongTermSolutionNeeded}}</td>
+            <td>{{ data.RedirectedtoOtherTeams}}</td>
+            <td>{{ data.Timetakentoresolvetheproblem}}</td>
+            <td>{{ data.Team}}</td>
+            <td>{{ data.LastModifiedBy}}</td>
+            <td>{{ data.LastModifiedDate}}</td>
+        </tr>
+    </div>
+</table>
+
 <!-- </mat-toolbar> -->
